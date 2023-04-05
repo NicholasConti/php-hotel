@@ -48,21 +48,58 @@ $hotels = [
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <title>Hotels</title>
 </head>
 
 <body>
 
-    <?php
-    foreach ($hotels as $hotel) {
-        foreach ($hotel as $valore) {
-            echo $valore;
-            echo '<br>';
-        }
-        echo '<hr>';
-    }
-    ?>
+    <!-- <?php
+            foreach ($hotels as $key => $hotel) {
+                echo $key;
+                echo '<br>';
 
+                foreach ($hotel as $valore) {
+                    echo $valore;
+                    echo '<br>';
+                }
+                echo '<hr>';
+            }
+            ?> -->
+    <table class="table table-dark table-striped text-center">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrizione</th>
+                <th scope="col">Parcheggio</th>
+                <th scope="col">Voto</th>
+                <th scope="col">Km dal centro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($hotels as $key => $hotel) :
+            ?>
+                <tr>
+                    <th scope="row"><?php echo $key; ?></th>
+                    <?php
+                    foreach ($hotel as $valore) :
+                    ?>
+                        <td><?php echo $valore; ?></td>
+
+                    <?php
+                    endforeach;
+
+                    ?>
+                </tr>
+            <?php
+            endforeach;
+
+            ?>
+        </tbody>
+    </table>
 </body>
 
 </html>
