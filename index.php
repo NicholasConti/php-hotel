@@ -53,6 +53,16 @@ $hotels = [
 
 <body>
 
+    <?php
+    foreach ($hotels as $hotel) {
+        foreach ($hotel as $valore) {
+            echo $valore;
+            echo '<br>';
+        }
+        echo '<hr>';
+    }
+    ?>
+
 </body>
 
 </html>
