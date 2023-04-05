@@ -54,52 +54,82 @@ $hotels = [
 </head>
 
 <body>
-
-    <!-- <?php
-            foreach ($hotels as $key => $hotel) {
-                echo $key;
-                echo '<br>';
-
-                foreach ($hotel as $valore) {
-                    echo $valore;
-                    echo '<br>';
-                }
-                echo '<hr>';
-            }
-            ?> -->
-    <table class="table table-dark table-striped text-center">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Descrizione</th>
-                <th scope="col">Parcheggio</th>
-                <th scope="col">Voto</th>
-                <th scope="col">Km dal centro</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($hotels as $key => $hotel) :
-            ?>
+    <form action="index.php" method="GET">
+        <label for="parking">Parcheggio incluso?</label>
+        <input type="radio" id="parking" name="checkParking">
+        <button>Cerca</button>
+    </form>
+    <br>
+    <?php
+    if (isset($_GET['checkParking'])) : /*SE IL RADIO BUTTON E SELEZIONATO */
+    ?>
+        <table class="table table-dark table-striped text-center">
+            <thead>
                 <tr>
-                    <th scope="row"><?php echo $key; ?></th>
-                    <?php
-                    foreach ($hotel as $valore) :
-                    ?>
-                        <td><?php echo $valore; ?></td>
-
-                    <?php
-                    endforeach;
-
-                    ?>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrizione</th>
+                    <th scope="col">Parcheggio</th>
+                    <th scope="col">Voto</th>
+                    <th scope="col">Km dal centro</th>
                 </tr>
-            <?php
-            endforeach;
-
-            ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($hotels as $key => $hotel) :
+                    if ($hotel['parking'] === true) : /* CONTROLLO SE IL VALORE DELL' ARRAY E TRUE*/
+                ?>
+                        <tr>
+                            <th scope="row"><?php echo $key; ?></th>
+                            <?php
+                            foreach ($hotel as $valore) :
+                            ?>
+                                <td><?php echo $valore; ?></td>
+                            <?php
+                            endforeach;
+                            ?>
+                        </tr>
+                <?php
+                    endif;
+                endforeach;
+                ?>
+            </tbody>
+        </table>
+        <!-- SE IL RADIO BUTTON NON E SELEZIONATO STAMPO TUTTI I RISULTATI-->
+    <?php else : ?>
+        <table class="table table-dark table-striped text-center">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrizione</th>
+                    <th scope="col">Parcheggio</th>
+                    <th scope="col">Voto</th>
+                    <th scope="col">Km dal centro</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($hotels as $key => $hotel) :
+                ?>
+                    <tr>
+                        <th scope="row"><?php echo $key; ?></th>
+                        <?php
+                        foreach ($hotel as $valore) :
+                        ?>
+                            <td><?php echo $valore; ?></td>
+                        <?php
+                        endforeach;
+                        ?>
+                    </tr>
+                <?php
+                endforeach;
+                ?>
+            </tbody>
+        </table>
+    <?php
+    endif;
+    ?>
 </body>
 
 </html>
